@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import PermissionDenied
 from user.models import User
 from user.serializers import UserSerializer
+from rest_framework.decorators import action
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,3 +20,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         raise PermissionDenied("Deleting user accounts is not allowed.")
+
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
+    def me(self, request):
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
