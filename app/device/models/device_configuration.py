@@ -50,3 +50,7 @@ class DeviceConfiguration(BaseModel):
         verbose_name="Limite de Precipitação",
         help_text="mm"
     )
+
+    class Meta:
+        verbose_name = "Configuração do Dispositivo"
+        verbose_name_plural = "Configurações dos Dispositivos"

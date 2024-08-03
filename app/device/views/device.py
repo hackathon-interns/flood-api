@@ -9,7 +9,7 @@ from rest_framework.decorators import action
 
 class DeviceViewSet(viewsets.ModelViewSet):
     '''
-    ViewSet for the `Device` model.
+    ViewSet for the Device model.
 
     This ViewSet provides CRUD operations for the `Device` model, including update and delete operations. 
     Additionally, it allows users to add devices to their notification list.

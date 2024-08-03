@@ -46,3 +46,7 @@ class Device(BaseModel):
             MaxValueValidator(90.0)
         ]
     )
+
+    class Meta:
+        verbose_name = "Dispositivo"
+        verbose_name_plural = "Dispositivos"

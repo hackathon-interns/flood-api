@@ -22,3 +22,7 @@ class DeviceData(BaseModel):
         verbose_name="Nível de Água",
         help_text="mm"
     )
+
+    class Meta:
+        verbose_name = "Dado do Dispositivo"
+        verbose_name_plural = "Dados dos Dispositivos"
