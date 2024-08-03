@@ -1,8 +1,8 @@
 from django.db import models
-from core.models import BaseModels
+from core.models import BaseModel
 
 
-class NotificationTemplate(BaseModels):
+class NotificationTemplate(BaseModel):
     '''
     Model to store the notification templates
     '''
