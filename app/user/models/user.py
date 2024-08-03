@@ -38,7 +38,7 @@ class UserManager(BaseUserManager):
             password=password,
             username=username,
         )
-        user.is_admin = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
 
@@ -68,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
     notify_on_new_station = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -82,8 +82,8 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         return self.email
 
     @property
-    def is_staff(self):
+    def is_superuser(self):
         """
-        Is the user a member of staff?
+        Is the user a superuser?
         """
-        return self.is_admin
+        return self.is_staff
