@@ -1,8 +1,8 @@
 from django.db import models
-from core.models import BaseModels
+from core.models import BaseModel
 
 
-class DeviceData(BaseModels):
+class DeviceData(BaseModel):
     device = models.ForeignKey(
         'device.Device',
         on_delete=models.CASCADE,
