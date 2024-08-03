@@ -30,7 +30,12 @@ INSTALLED_APPS = [
     # external apps
     'rest_framework',
     'drf_spectacular',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    # internal apps
+    'user',
+    'core',
+    'device',
+    'notification'
 ]
 
 MIDDLEWARE = [
