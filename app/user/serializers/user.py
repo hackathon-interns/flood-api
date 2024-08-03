@@ -7,7 +7,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'email', 'profile_img', 'notify_on_new_station', 'stations_to_notify']
+        fields = ['username', 'password', 'email', 'profile_img',
+                  'notify_on_new_station', 'stations_to_notify']
+        read_only_fields = ['stations_to_notify']
+        optional_fields = ['profile_img', 'notify_on_new_station']
 
     def create(self, validated_data):
         user = User.objects.create_user(
