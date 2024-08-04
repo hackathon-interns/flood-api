@@ -1,4 +1,4 @@
-# Django Setup Template
+# Flood Api Django
 
 Este é um template básico para projetos Django, contendo uma configuração inicial que eu considero a melhor prática. Ele inclui todas as bibliotecas e configurações que frequentemente utilizo em meus projetos.
 
@@ -36,8 +36,8 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados:
 1. Clone o repositório:
 
     ```bash
-    git clone https://github.com/pedroandrade03/django-setup-template.git
-    cd django-setup-template
+    git clone https://github.com/hackathon-interns/flood-api.git
+    cd flood-api
     ```
 
 2. Crie um ambiente virtual:
@@ -53,29 +53,19 @@ Antes de começar, certifique-se de ter os seguintes requisitos instalados:
     pip install -r requirements.txt
     ```
 
-4. Configure as variáveis de ambiente:
-
-    Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis:
-
-    ```env
-    DEBUG=True
-    SECRET_KEY=your-secret-key
-    DATABASE_URL=sqlite:///db.sqlite3
-    ```
-
-5. Execute as migrações do banco de dados:
+4. Execute as migrações do banco de dados:
 
     ```bash
     python manage.py migrate
     ```
 
-6. Crie um superusuário:
+5. Crie um superusuário:
 
     ```bash
     python manage.py createsuperuser
     ```
 
-7. Inicie o servidor de desenvolvimento:
+6. Inicie o servidor de desenvolvimento:
 
     ```bash
     python manage.py runserver
@@ -88,11 +78,14 @@ Para personalizar o template para o seu projeto, você pode modificar os seguint
 - `app/`: Aplicação principal do projeto.
 - `core/`: Módulo principal do projeto.
 - `user/`: Aplicação de autenticação de usuários.
+- `device/`: Aplicação de dispositivos.
+- `notification/`: Aplicação de notificações.
 
 ## Uso
 
 Para iniciar o servidor de desenvolvimento, use:
 
 ```bash
+cd app
 python manage.py runserver
 ```
