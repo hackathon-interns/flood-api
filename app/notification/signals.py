@@ -11,7 +11,7 @@ def check_device_data(sender, instance, **kwargs):
     Check if the distance to water is in a dangerous level
     and send an email to the users to notify them.
     '''
-    print(f"Checking data from device {instance.device.code}")
+    print(f"Checking data from device {instance.device.identifier}")
     config = DeviceConfiguration.objects.get(device=instance.device)
 
     if instance.distance_to_water <= config.danger_water_level:

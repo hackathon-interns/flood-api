@@ -87,3 +87,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         Is the user a superuser?
         """
         return self.is_staff
+
+    class Meta:
+        verbose_name = "Usuário"
+        verbose_name_plural = "Usuários"
