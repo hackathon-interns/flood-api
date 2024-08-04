@@ -13,39 +13,66 @@ class Device(BaseModel):
         ('UNVERIFIED', 'Não Verificado'),
     ]
 
+    name = models.CharField(max_length=255, verbose_name="Nome do Dispositivo")
     user = models.ForeignKey(
         'user.User',
         on_delete=models.CASCADE,
-        related_name='devices'
+        related_name='devices',
+        verbose_name="Usuário do Dispositivo"
     )
 
-    code = models.CharField(
+    identifier = models.CharField(
         max_length=255,
-        unique=True
+        unique=True,
+        verbose_name="Identificador do Dispositivo",
+        help_text="Identificador único do dispositivo"
     )
 
-    front_photo = models.ImageField(upload_to='device_photos/')
-    side_photo = models.ImageField(upload_to='device_photos/')
+    front_photo = models.ImageField(
+        upload_to='device_photos/', verbose_name="Foto Frontal")
+    side_photo = models.ImageField(
+        upload_to='device_photos/', verbose_name="Foto Lateral")
 
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default='UNVERIFIED'
+        default='UNVERIFIED',
+        verbose_name="Status do Dispositivo"
     )
 
     longitude = models.FloatField(
         validators=[
             MinValueValidator(-180.0),
             MaxValueValidator(180.0)
-        ]
+        ],
+        verbose_name="Longitude",
+        help_text="Entre -180 e 180"
     )
 
     latitude = models.FloatField(
         validators=[
             MinValueValidator(-90.0),
             MaxValueValidator(90.0)
-        ]
+        ],
+        verbose_name="Latitude",
+        help_text="Entre -90 e 90"
     )
+
+    def calculate_distance(self, latitude, longitude):
+        """
+        Calculate the distance between the device and given latitude and longitude.
+
+        Returns the distance in kilometers.
+        """
+        from geopy.distance import geodesic
+
+        device_location = (self.latitude, self.longitude)
+        user_location = (latitude, longitude)
+
+        return geodesic(device_location, user_location).kilometers
+
+    def __str__(self):
+        return f"{self.name} - {self.id}"
 
     class Meta:
         verbose_name = "Dispositivo"

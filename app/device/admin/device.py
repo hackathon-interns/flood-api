@@ -2,18 +2,19 @@ from device.models import Device
 from django.contrib import admin
 from core.admin import AdminBase
 
+
 @admin.register(Device)
 class DeviceAdmin(AdminBase):
     list_display = [
+        'name',
         'user',
-        'code',
+        'identifier',
         'status',
         'longitude',
         'latitude'
     ]
 
     search_fields = [
-        'code',
         'user__email',
         'user__first_name',
         'user__last_name'

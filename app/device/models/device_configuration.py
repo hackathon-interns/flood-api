@@ -50,7 +50,17 @@ class DeviceConfiguration(BaseModel):
         verbose_name="Limite de Precipitação",
         help_text="mm"
     )
+    data_mapping = models.JSONField(verbose_name="Mapeamento de Dados")
 
     class Meta:
         verbose_name = "Configuração do Dispositivo"
         verbose_name_plural = "Configurações dos Dispositivos"
+
+    def save(self, *args, **kwargs):
+        """
+        Save the device configuration.
+        """
+        if not self.device.status == 'UNVERIFIED':
+            self.device.status = 'ACTIVE'
+            self.device.save()
+        super().save(*args, **kwargs)
