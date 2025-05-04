@@ -29,9 +29,9 @@ class Device(BaseModel):
     )
 
     front_photo = models.ImageField(
-        upload_to='device_photos/', verbose_name="Foto Frontal")
+        upload_to='device_photos/', verbose_name="Foto Frontal", null=True, blank=True)
     side_photo = models.ImageField(
-        upload_to='device_photos/', verbose_name="Foto Lateral")
+        upload_to='device_photos/', verbose_name="Foto Lateral", null=True, blank=True)
 
     status = models.CharField(
         max_length=20,
